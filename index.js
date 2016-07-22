@@ -1,9 +1,7 @@
 const express = require('express')
 const app = express()
 
-const listener = app.listen(4000, () => {
-  console.log(`app listening on port ${listener.address().port}`)
-})
+const counter = require('./counter')
 
 // Set Handlebars as a view engine.
 app.set('view engine', 'hbs')
@@ -12,21 +10,11 @@ app.set('view engine', 'hbs')
 app.use(express.static('public'))
 
 // Routes.
-app.get('/', (req, res) => {
-  res.redirect('/9')
-})
-app.get('/:count', (req, res) => {
-  const count = req.params.count || 9
-  const next = count - 1;
+app.get('/', counter.home)
+app.get('/0', counter.none)
+app.get('/:count', counter.some)
 
-  // Render a view instead of sending a string directly to the response.
-  if (count > 1) {
-    res.render('index', {
-      count: next
-    })
-  } else {
-    res.render('index', {
-      count: 0
-    })
-  }
+// Listen.
+const listener = app.listen(4000, () => {
+  console.log(`app listening on port ${listener.address().port}`)
 })
