@@ -1,4 +1,4 @@
-# Hello express
+# Express things
 
 In this repo, I practice the basics of Express.
 
@@ -59,8 +59,39 @@ $ npm install --save hbs
 app.set("view engine", "hbs");
 ```
 
+---
 
+## Middleware
 
+- code that runs in between receiving the request and responding.
+
+#### Body-parser
+- Handles information posted from an html form
+- By default express does not have it.
+
+```js
+$ npm install --save body-parser
+```
+
+```js
+...
+const bodyParser = require('body-parser')
+...
+// Handle json post requests.
+app.use(bodyParser.json())
+
+// Handle form submissions.
+app.use(bodyParser.urlencoded({ extended: true }))
+...
+```
+
+---
+
+## res.params vs res.body
+- Use `res.params` for GET.
+- Use `res.body` for POST.
+
+---
 
 ## References
 - [ga-wdi-lessons/express-intro](https://github.com/ga-wdi-lessons/express-intro)

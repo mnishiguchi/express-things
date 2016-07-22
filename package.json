@@ -1,5 +1,6 @@
 {
-  "name": "hello-express",
+  "private": true,
+  "name": "express-things",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,9 +8,10 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Masatoshi Nishiguchi",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "hbs": "^4.0.0"
   }

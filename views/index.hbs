@@ -1,5 +1,11 @@
-Counter: {{count}}
+{{#if player_name}}
+  Hey {{player_name}}, there are {{count}}.
+{{else}}
+  Counter: {{count}}
+{{/if}}
+
 <hr>
+
 {{#if next}}
   <a href='/{{next}}'>Take one down</a>
 {{else}}
