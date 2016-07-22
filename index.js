@@ -1,16 +1,32 @@
-var express = require("express")
-var app = express()
+const express = require('express')
+const app = express()
 
-app.listen(4000, function() {
-  console.log("app listening on port 4000")
+const listener = app.listen(4000, () => {
+  console.log(`app listening on port ${listener.address().port}`)
 })
 
-// Root route: displays "Hello world"
-app.get("/", function(req, res) {
-  res.send("Hello world")
-})
+// Set Handlebars as a view engine.
+app.set('view engine', 'hbs')
 
-// "/:name": displays "Hello <name>"
-app.get("/:name", function(req, res) {
-  res.send("Hello " + req.params.name)
+// Serve static content from the `public` directory.
+app.use(express.static('public'))
+
+// Routes.
+app.get('/', (req, res) => {
+  res.redirect('/9')
+})
+app.get('/:count', (req, res) => {
+  const count = req.params.count || 9
+  const next = count - 1;
+
+  // Render a view instead of sending a string directly to the response.
+  if (count > 1) {
+    res.render('index', {
+      count: next
+    })
+  } else {
+    res.render('index', {
+      count: 0
+    })
+  }
 })
